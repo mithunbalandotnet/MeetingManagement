@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MeetingManagement.Data;
+using MeetingManagement.DL.Repository;
+using MeetingManagement.DL.Repository.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,8 +19,6 @@ namespace MeetingManagement.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.AddDbContext<MeetingDBContext>(item => item.UseSqlServer(Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString("MeetSQL"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +38,11 @@ namespace MeetingManagement.Web
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+        }
+
+        private void RegisterDependency(IServiceCollection services)
+        {
+            services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         }
     }
 }

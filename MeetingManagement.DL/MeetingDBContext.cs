@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MeetingManagement.DL.Extension;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MeetingManagement.Data
+namespace MeetingManagement.DL
 {
     public class MeetingDBContext : DbContext
     {
@@ -18,6 +19,16 @@ namespace MeetingManagement.Data
         }
         #endregion
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=MeetingManage;User ID=mithun;Password=balan;MultipleActiveResultSets=True");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Attendee> Attendees { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
