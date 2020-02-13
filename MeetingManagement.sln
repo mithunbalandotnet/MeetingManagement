@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingManagement.Web", "MeetingManagement.Web\MeetingManagement.Web.csproj", "{F1BA430A-35D1-40A6-9276-DCA2A01ADE0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingManagement.Data", "MeetingManagement.Data\MeetingManagement.Data.csproj", "{F76C1471-0303-4CE8-B0DE-8CFA47910028}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1BA430A-35D1-40A6-9276-DCA2A01ADE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BA430A-35D1-40A6-9276-DCA2A01ADE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BA430A-35D1-40A6-9276-DCA2A01ADE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BA430A-35D1-40A6-9276-DCA2A01ADE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F76C1471-0303-4CE8-B0DE-8CFA47910028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76C1471-0303-4CE8-B0DE-8CFA47910028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76C1471-0303-4CE8-B0DE-8CFA47910028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76C1471-0303-4CE8-B0DE-8CFA47910028}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3FC833F-7F63-42DA-8AF6-AE2F14BA6589}
+	EndGlobalSection
+EndGlobal
