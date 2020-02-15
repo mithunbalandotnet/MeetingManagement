@@ -1,1 +1,15 @@
-<p>meeting-list works!</p>
+<p>Meeting List</p>
+<a href="addmeeting"><Add/a>
+<table>
+  <tr *ngFor="let meeting of meetings">
+    <td>        
+        {{ meeting.Subject }}
+    </td>
+    <td>        
+        {{ meeting.MeetingAgenda }}
+    </td>
+    <td>        
+        {{ meeting.MeetingDateTime }}
+    </td>
+  </tr>
+</table>

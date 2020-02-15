@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MeetingManagement.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace MeetingManagement.Web.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
+        [Route("token")]
         public IActionResult Login([FromBody] LoginVM model) 
         {
             var user = _userRepo.GetAll().FirstOrDefault(u => u.UserName == model.Username && u.Password == model.Password);

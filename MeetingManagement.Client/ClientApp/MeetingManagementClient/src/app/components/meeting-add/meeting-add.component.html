@@ -1,1 +1,37 @@
-<p>meeting-add works!</p>
+<p>Add meeting</p>
+
+<table>
+  <tr>
+    <td>
+      Subject
+    </td>
+    <td>
+      <input type="text" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Attendees
+    </td>
+    <td>
+      <ejs-MultiSelect></ejs-MultiSelect>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Meeting Agenda
+    </td>
+    <td>
+      <textarea></textarea>>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Date And Time
+    </td>
+    <td>
+        <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" >
+        <owl-date-time #dt></owl-date-time>
+    </td>
+  </tr>
+</table>

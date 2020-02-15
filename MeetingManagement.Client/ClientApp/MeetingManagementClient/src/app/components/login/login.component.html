@@ -2,19 +2,19 @@
 <table>
   <tr>
     <td>UserName</td>
-    <td> <input type="text" /> </td>
+    <td> <input type="text" [(ngModel)]="login.userName"/> </td>
   </tr>
   <tr>
     <td>
       Password
     </td>
     <td>
-      <input type="text" />
+      <input type="password" [(ngModel)]="login.password"/>
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <input type="button" value="Login" />
+      <input type="button" value="Login" (click)="authenticate()" />
     </td>
   </tr>
 </table>

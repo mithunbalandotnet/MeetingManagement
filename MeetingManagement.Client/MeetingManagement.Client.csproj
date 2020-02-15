@@ -28,8 +28,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\MeetingManagementClient\src\app\models\meeting.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\MeetingManagementClient\src\app\components\" />
     <Folder Include="ClientApp\MeetingManagementClient\src\app\services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\MeetingManagementClient\src\app\models\meeting.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
