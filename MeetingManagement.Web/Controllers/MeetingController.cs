@@ -17,10 +17,13 @@ namespace MeetingManagement.Web.Controllers
     public class MeetingController : ControllerBase
     {
         private readonly IRepositoryBase<Meeting> _meetingRepo;
+        private readonly IRepositoryBase<Attendee> _attendeeRepo;
 
-        public MeetingController(IRepositoryBase<Meeting> meetingRepo)
+        public MeetingController(IRepositoryBase<Meeting> meetingRepo,
+            IRepositoryBase<Attendee> attendeeRepo)
         {
             _meetingRepo = meetingRepo;
+            _attendeeRepo = attendeeRepo;
         }
 
         public List<MeetingVM> Get()
@@ -28,6 +31,15 @@ namespace MeetingManagement.Web.Controllers
             return _meetingRepo.GetAll().Select(m => new MeetingVM()
             {
                 ID = m.ID,MeetingAgenda = m.MeetingAgenda, MeetingDateTime = m.MeetingDateTime, Subject = m.Subject
+            }).ToList();
+        }
+
+        [Route("getAttendees")]
+        public List<AttendeeVM> GetAttendees()
+        {
+            return _attendeeRepo.GetAll().Select(a => new AttendeeVM()
+            {
+                ID = a.ID, Name = a.Name
             }).ToList();
         }
     }

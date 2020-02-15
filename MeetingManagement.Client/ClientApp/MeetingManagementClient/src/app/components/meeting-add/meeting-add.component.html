@@ -6,7 +6,7 @@
       Subject
     </td>
     <td>
-      <input type="text" />
+      <input type="text" [(ngModel)]="meeting.Subject"/>
     </td>
   </tr>
   <tr>
@@ -14,7 +14,7 @@
       Attendees
     </td>
     <td>
-      <ejs-MultiSelect></ejs-MultiSelect>
+      <ejs-MultiSelect [dataSource]='attendeesGlobal'></ejs-MultiSelect>
     </td>
   </tr>
   <tr>
@@ -22,7 +22,7 @@
       Meeting Agenda
     </td>
     <td>
-      <textarea></textarea>>
+      <textarea [(ngModel)]="meeting.MeetingAgenda"></textarea>>
     </td>
   </tr>
   <tr>
@@ -30,7 +30,7 @@
       Date And Time
     </td>
     <td>
-        <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" >
+        <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="meeting.MeetingDateTime">
         <owl-date-time #dt></owl-date-time>
     </td>
   </tr>

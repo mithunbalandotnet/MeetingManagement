@@ -20,7 +20,7 @@ export class MeetingAddComponent implements OnInit {
 
   getAttendees(){
     this.meetingService.getAttendees().subscribe(data => {
-      this.attendeesGlobal = data;
+      this.attendeesGlobal = data;  
     });
   }
 }
