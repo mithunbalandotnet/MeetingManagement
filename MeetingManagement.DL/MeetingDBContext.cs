@@ -18,12 +18,7 @@ namespace MeetingManagement.DL
 
         }
         #endregion
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=MeetingManage;User ID=mithun;Password=balan;MultipleActiveResultSets=True");
-        }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
