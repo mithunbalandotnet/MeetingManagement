@@ -42,5 +42,23 @@ namespace MeetingManagement.Web.Controllers
                 ID = a.ID, Name = a.Name
             }).ToList();
         }
+
+        [HttpPost]
+        [Route("add")]
+        public MeetingVM Add(MeetingVM meetingVM)
+        {
+            var meeting = new Meeting()
+            {
+                MeetingAgenda = meetingVM.MeetingAgenda,
+                Subject = meetingVM.Subject,
+                MeetingDateTime = meetingVM.MeetingDateTime,
+                Attendees = meetingVM.Attendees.Select(a => new MeetingAttendee() { AttendeeID = a.ID }).ToList()
+            };
+            _meetingRepo.Create(meeting);
+
+            meetingVM.ID = meeting.ID;
+
+            return meetingVM;
+        }
     }
 }

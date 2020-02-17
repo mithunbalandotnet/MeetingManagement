@@ -11,5 +11,6 @@ namespace MeetingManagement.Web.Models
         public string Subject { get; set; }
         public string MeetingAgenda { get; set; }
         public DateTime MeetingDateTime { get; set; }
+        public List<AttendeeVM> Attendees { get; set; }
     }
 }

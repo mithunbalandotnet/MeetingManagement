@@ -10,5 +10,7 @@ namespace MeetingManagement.DL
         public string Subject { get; set; }
         public string MeetingAgenda { get; set; }
         public DateTime MeetingDateTime { get; set; }
+
+        public virtual ICollection<MeetingAttendee> Attendees { get; set; }
     }
 }
