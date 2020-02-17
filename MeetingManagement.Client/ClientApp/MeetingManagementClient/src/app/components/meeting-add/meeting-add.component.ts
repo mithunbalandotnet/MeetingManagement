@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Meeting } from 'src/app/models/meeting';
 import { Attendee } from 'src/app/models/attendee';
 import { MeetingService } from 'src/app/services/meeting.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meeting-add',
   templateUrl: './meeting-add.component.html',
   styleUrls: ['./meeting-add.component.scss']
 })
-export class MeetingAddComponent implements OnInit {
+export class MeetingAddComponent implements OnInit, OnDestroy {
   meeting:Meeting;
   attendeesGlobal:Array<Attendee>;
   
-  constructor(private meetingService: MeetingService) { }
+  constructor(private meetingService: MeetingService,
+    private apiService: ApiService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getAttendees();
@@ -22,5 +26,15 @@ export class MeetingAddComponent implements OnInit {
     this.meetingService.getAttendees().subscribe(data => {
       this.attendeesGlobal = data;  
     });
+  }
+
+  SaveClick(e){
+    this.apiService.post("meeting\add", this.meeting).subscribe(data => {
+      this.router.navigate(['/meetings'])
+    });
+  }
+
+  ngOnDestroy(): void {
+    
   }
 }

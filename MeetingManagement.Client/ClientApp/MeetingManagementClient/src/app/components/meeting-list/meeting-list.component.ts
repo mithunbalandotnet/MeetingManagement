@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MeetingService } from 'src/app/services/meeting.service';
 import { Meeting } from 'src/app/models/meeting';
 
@@ -7,9 +7,11 @@ import { Meeting } from 'src/app/models/meeting';
   templateUrl: './meeting-list.component.html',
   styleUrls: ['./meeting-list.component.scss']
 })
-export class MeetingListComponent implements OnInit {
+export class MeetingListComponent implements OnInit, OnDestroy {
+  
   meetings: Array<Meeting>;
   constructor(private meetingService: MeetingService) {
+    this.meetings = [];
       this.getMeetings();
    }
 
@@ -20,5 +22,8 @@ export class MeetingListComponent implements OnInit {
     this.meetingService.getMeetings().subscribe(data => {
       
     });
+  }
+
+  ngOnDestroy(): void {
   }
 }

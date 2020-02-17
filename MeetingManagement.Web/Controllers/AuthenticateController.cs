@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MeetingManagement.DL;
+using MeetingManagement.DL.Repository.Abstract;
+using MeetingManagement.Web.Infrastructure;
+using MeetingManagement.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using MeetingManagement.DL;
-using MeetingManagement.DL.Repository.Abstract;
-using MeetingManagement.Web.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace MeetingManagement.Web.Controllers
 {
@@ -17,10 +18,13 @@ namespace MeetingManagement.Web.Controllers
     public class AuthenticateController : ControllerBase
     {
         private readonly IRepositoryBase<User> _userRepo;
+        private readonly AuthOptions _authOptions;
 
-        public AuthenticateController(IRepositoryBase<User> userRepo)
+        public AuthenticateController(IRepositoryBase<User> userRepo,
+            IOptions<AuthOptions> authOptionsAccessor)
         {
             _userRepo = userRepo;
+            _authOptions = authOptionsAccessor.Value;
         }
 
         [HttpPost]
@@ -33,8 +37,24 @@ namespace MeetingManagement.Web.Controllers
             {
                 var authClaims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
+
+                var token = new JwtSecurityToken(
+                    issuer: _authOptions.Issuer,
+                    audience: _authOptions.Audience,
+                    expires: DateTime.Now.AddHours(_authOptions.ExpiresInMinutes),
+                    claims: authClaims,
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.SecureKey)),
+                        SecurityAlgorithms.HmacSha256Signature)
+                    );
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo
+                });
             }
 
             return Unauthorized();

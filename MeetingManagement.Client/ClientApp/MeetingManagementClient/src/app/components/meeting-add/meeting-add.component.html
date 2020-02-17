@@ -6,7 +6,7 @@
       Subject
     </td>
     <td>
-      <input type="text" [(ngModel)]="meeting.Subject"/>
+      <input type="text" [(ngModel)]="meeting.subject"/>
     </td>
   </tr>
   <tr>
@@ -14,7 +14,15 @@
       Attendees
     </td>
     <td>
-      <ejs-MultiSelect [dataSource]='attendeesGlobal'></ejs-MultiSelect>
+      <ng-multiselect-dropdown 
+        [singleSelection]="true" 
+        [placeholder]="'Select Attendees'"
+        [data]="attendeesGlobal"
+        [idField]="id",
+        [textField]="name"
+        [allowSearchFilter]="true"
+        [(ngModel)]="meeting.attendees"
+      ></ng-multiselect-dropdown>
     </td>
   </tr>
   <tr>
@@ -22,7 +30,7 @@
       Meeting Agenda
     </td>
     <td>
-      <textarea [(ngModel)]="meeting.MeetingAgenda"></textarea>>
+      <textarea [(ngModel)]="meeting.meetingAgenda"></textarea>>
     </td>
   </tr>
   <tr>
@@ -30,8 +38,13 @@
       Date And Time
     </td>
     <td>
-        <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="meeting.MeetingDateTime">
-        <owl-date-time #dt></owl-date-time>
+      <ngb-datepicker #dp [(ngModel)]="meeting.meetingDateTime" ></ngb-datepicker>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <input type="button" value="Save" (click)="SaveClick($event)"/>
     </td>
   </tr>
 </table>

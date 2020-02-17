@@ -12,6 +12,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
     setHeader(header:any){
+      localStorage.setItem("", JSON.stringify(header) );
       this.httpOptions.headers = header;
     }
   get(url:string, data:any){

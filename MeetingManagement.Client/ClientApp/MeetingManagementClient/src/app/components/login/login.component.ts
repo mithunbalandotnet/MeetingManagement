@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Login } from 'src/app/models/login';
 import { LoginService } from 'src/app/services/login.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   login: Login;
   constructor(private loginService: LoginService, 
     private apiService: ApiService,
@@ -24,8 +24,12 @@ export class LoginComponent implements OnInit {
   authenticate(){
       this.loginService.login(this.login).subscribe(data => {
         this.apiService.setHeader(data);
-        this.router.navigate(['/meetings'])
+        this.router.navigate(['/meetings']);
       });
+    
+  }
+
+  ngOnDestroy() {
     
   }
 }

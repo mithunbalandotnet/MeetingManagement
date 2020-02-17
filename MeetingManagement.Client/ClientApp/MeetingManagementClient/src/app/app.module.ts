@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MeetingListComponent } from './components/meeting-list/meeting-list.component';
 import { MeetingAddComponent } from './components/meeting-add/meeting-add.component';
 import { MeetingEditComponent } from './components/meeting-edit/meeting-edit.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,9 @@ import { MeetingEditComponent } from './components/meeting-edit/meeting-edit.com
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MultiSelectAllModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    NgMultiSelectDropDownModule.forRoot(),
+    JwtModule.forRoot({ config: {}}),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

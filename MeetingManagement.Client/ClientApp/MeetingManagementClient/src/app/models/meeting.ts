@@ -2,8 +2,8 @@ import { Attendee } from './attendee';
 
 export class Meeting{
  id: number;
-Subject: string;
-MeetingAgenda : string;
-MeetingDateTime: Date;
+subject: string;
+meetingAgenda : string;
+meetingDateTime: Date;
 attendees:Array<Attendee>
 }
