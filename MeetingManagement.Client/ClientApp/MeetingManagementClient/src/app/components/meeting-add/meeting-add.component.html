@@ -14,15 +14,13 @@
       Attendees
     </td>
     <td>
-      <ng-multiselect-dropdown 
-        [singleSelection]="true" 
-        [placeholder]="'Select Attendees'"
+      <angular2-multiselect 
+        [text]="'Select Attendees'"
+        [enableSearchFilter]="true"
+        [limitSelection]="10"
         [data]="attendeesGlobal"
-        [idField]="id",
-        [textField]="name"
-        [allowSearchFilter]="true"
-        [(ngModel)]="meeting.attendees"
-      ></ng-multiselect-dropdown>
+        [(ngModel)]="selectedAttendees" 
+      ></angular2-multiselect>
     </td>
   </tr>
   <tr>

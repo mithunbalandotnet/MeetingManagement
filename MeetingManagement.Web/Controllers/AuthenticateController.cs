@@ -29,7 +29,7 @@ namespace MeetingManagement.Web.Controllers
 
         [HttpPost]
         [Route("token")]
-        public IActionResult Login([FromBody] LoginVM model) 
+        public IActionResult Login(LoginVM model) 
         {
             var user = _userRepo.GetAll().FirstOrDefault(u => u.UserName == model.Username && u.Password == model.Password);
 

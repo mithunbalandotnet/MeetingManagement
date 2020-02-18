@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class MeetingAddComponent implements OnInit, OnDestroy {
   meeting:Meeting;
-  attendeesGlobal:Array<Attendee>;
-  
+  attendeesGlobal:Array<any>;
+  selectedAttendees: Array<any>;
   constructor(private meetingService: MeetingService,
     private apiService: ApiService,
     private router: Router) { }
@@ -24,7 +24,7 @@ export class MeetingAddComponent implements OnInit, OnDestroy {
 
   getAttendees(){
     this.meetingService.getAttendees().subscribe(data => {
-      this.attendeesGlobal = data;  
+      this.attendeesGlobal = data.map(function(a){ return { id : a.id, itemName: a.name}; });  
     });
   }
 
