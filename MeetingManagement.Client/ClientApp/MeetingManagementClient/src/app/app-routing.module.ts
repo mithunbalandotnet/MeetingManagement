@@ -7,17 +7,13 @@ import { AuthorizeService as Authorize} from './services/authorize.service';
 
 const routes: Routes = [
   {
-	    path: '',
-      component: MeetingListComponent, 
-      canActivate: [Authorize]
+    path: '',
+    loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
+    canActivate: [Authorize]
   },
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'meetings',
-    component: MeetingListComponent
   }
 ];
 

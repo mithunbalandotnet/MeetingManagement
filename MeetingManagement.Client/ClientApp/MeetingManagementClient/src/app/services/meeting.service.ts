@@ -16,4 +16,9 @@ export class MeetingService {
   getAttendees(){
     return this.apiService.get("meeting/getAttendees", null)
   }
+
+  deleteMeeting(id: any) {
+    var deleteModel = { id: id};
+    return this.apiService.post("meeting/delete", deleteModel);
+  }
 }

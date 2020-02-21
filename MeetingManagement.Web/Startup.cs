@@ -32,6 +32,10 @@ namespace MeetingManagement.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Enabling Cors 
+            services.AddCors(options => {
+                options.AddPolicy("dummyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
             services.AddDbContext<MeetingDBContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:DB1"]));
             services.RegisterTransient();
             services.Configure<AuthOptions>(Configuration.GetSection("AuthOptions"));
@@ -65,7 +69,7 @@ namespace MeetingManagement.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("dummyPolicy");
             app.UseHttpsRedirection();
 
             app.UseRouting();

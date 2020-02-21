@@ -1,1 +1,49 @@
-<p>meeting-edit works!</p>
+<h2>meeting-edit works!</h2>
+
+<table>
+    <tr>
+      <td>
+        Subject
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="meeting.subject" maxlength="50"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attendees
+      </td>
+      <td>
+        <ng-multiselect-dropdown 
+          [(ngModel)]="meeting.attendees"
+          [placeholder]="'Select Attendees'"        
+          [data]="attendeesGlobal"
+          [settings]="dropdownSettings"
+        ></ng-multiselect-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Meeting Agenda
+      </td>
+      <td>
+        <textarea [(ngModel)]="meeting.meetingAgenda"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Date And Time
+      </td>
+      <td>
+        <!-- <ngb-datepicker #dp [(ngModel)]="meetingDate" (navigate)="date = $event.next"></ngb-datepicker> -->
+        <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" [(ngModel)]="meeting.meetingDateTime">
+        <owl-date-time #dt1></owl-date-time>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="button" value="Save" (click)="SaveClick($event)"/>
+      </td>
+    </tr>
+  </table>

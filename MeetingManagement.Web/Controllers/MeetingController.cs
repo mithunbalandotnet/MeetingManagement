@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MeetingManagement.Web.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/meeting")]
     [ApiController]
     public class MeetingController : ControllerBase
     {
@@ -29,17 +29,30 @@ namespace MeetingManagement.Web.Controllers
             _meetAttendeeRepo = meetAttendeeRepo;
         }
 
+        [Route("get")]
         public List<MeetingVM> Get()
         {
-            return _meetingRepo.GetAll().Select(m => new MeetingVM()
+            return _meetingRepo.GetAll(m => m.Attendees).Select(m => new MeetingVM()
             {
                 ID = m.ID,
                 MeetingAgenda = m.MeetingAgenda,
                 MeetingDateTime = m.MeetingDateTime,
-                Subject = m.Subject
+                Subject = m.Subject,
+                Attendees = m.Attendees.Select(a => new AttendeeVM { ID = a.AttendeeID, Name = a.Attendee.Name }).ToList()
             }).ToList();
         }
 
+        [Route("getmeeting")]
+        public MeetingVM GetMeeting(int id)
+        {
+            var meeting = _meetingRepo.GetById(id);
+            var attendees = _meetAttendeeRepo.GetAll().Where(ma => ma.MeetingID == id);
+            return new MeetingVM {
+                ID = meeting.ID, Subject = meeting.Subject, MeetingAgenda = meeting.MeetingAgenda,
+                MeetingDateTime = meeting.MeetingDateTime,
+                Attendees = attendees.Select(a => new AttendeeVM { ID = a.AttendeeID, Name = a.Attendee.Name }).ToList()
+            };
+        }
         [Route("getAttendees")]
         public List<AttendeeVM> GetAttendees()
         {
@@ -72,12 +85,13 @@ namespace MeetingManagement.Web.Controllers
         [Route("update")]
         public MeetingVM Update(MeetingVM meetingVM)
         {
-            var meeting = _meetingRepo.GetAll(m => m.Attendees).FirstOrDefault(m => m.ID == meetingVM.ID);
+            var meeting = _meetingRepo.GetAll().FirstOrDefault(m => m.ID == meetingVM.ID);
             if (meeting != null)
             {
-                if (meeting.Attendees != null && meeting.Attendees.Count > 0)
+                var attendees = _meetAttendeeRepo.GetAll(ma => ma.MeetingID == meeting.ID).ToList();
+                if (attendees != null && attendees.Count > 0)
                 {
-                    foreach (var attendee in meeting.Attendees)
+                    foreach (var attendee in attendees)
                     {
                         _meetAttendeeRepo.Delete(attendee.ID);
                     }
@@ -111,9 +125,9 @@ namespace MeetingManagement.Web.Controllers
 
         [HttpPost]
         [Route("delete")]
-        public bool Delete(int id)
+        public bool Delete(DeleteVM deleteVM)
         {
-            _meetingRepo.Delete(id);
+            _meetingRepo.Delete(deleteVM.ID);
             return true;
         }
     }

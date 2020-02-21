@@ -5,5 +5,6 @@ export class Meeting{
 subject: string;
 meetingAgenda : string;
 meetingDateTime: Date;
-attendees:Array<Attendee>
+attendees:Array<Attendee>;
+attendeesList: string;
 }

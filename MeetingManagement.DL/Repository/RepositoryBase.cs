@@ -42,11 +42,13 @@ namespace MeetingManagement.DL.Repository
         public void Update(T entity)
         {
             _dbContext.Set<T>().Update(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Create(T entity)
         {
             _dbContext.Add<T>(entity);
+            _dbContext.SaveChanges();
         }
 
         public bool Delete(int id)
@@ -55,6 +57,7 @@ namespace MeetingManagement.DL.Repository
             if (entity != null)
             {
                 _dbContext.Set<T>().Remove(entity);
+                _dbContext.SaveChanges();
                 return true;
             }
 

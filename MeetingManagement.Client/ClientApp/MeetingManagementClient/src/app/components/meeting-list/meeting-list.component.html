@@ -1,15 +1,45 @@
-<p>Meeting List</p>
-<a href="addmeeting"><Add/a>
-<table>
+<h2>Meeting List</h2>
+<table *ngIf="meetings != null && meetings.length > 0">
+  <tr>
+    <td>Subject</td>
+    <td>
+      Attendees
+    </td>
+    <td>
+      Agenda
+    </td>
+    <td>
+      Date
+    </td>
+    <td>
+      Edit
+    </td>
+    <td>
+      Delete
+    </td>
+  </tr>
   <tr *ngFor="let meeting of meetings">
     <td>        
-        {{ meeting.Subject }}
+        {{ meeting.subject }}
+    </td>
+    <td>
+      {{ meeting.attendeesList }}
+    </td>
+    <td >        
+        {{ meeting.meetingAgenda }}
     </td>
     <td>        
-        {{ meeting.MeetingAgenda }}
+        {{ meeting.meetingDateTime | date:'short' }}
     </td>
-    <td>        
-        {{ meeting.MeetingDateTime }}
+    <td>
+      <a [routerLink]="['/editmeeting', meeting.id]">Edit</a>
+    </td>
+    <td>
+      <input type="button" value="Delete" (click)="Delete($event, meeting.id)" />
     </td>
   </tr>
 </table>
+<div *ngIf="meetings == null || meetings.length == 0" >
+  <span class="error"> No meetings found </span>
+</div>
+<a href="addmeeting">Add Meeting</a>
