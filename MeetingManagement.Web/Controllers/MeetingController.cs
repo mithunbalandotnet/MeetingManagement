@@ -88,7 +88,7 @@ namespace MeetingManagement.Web.Controllers
             var meeting = _meetingRepo.GetAll().FirstOrDefault(m => m.ID == meetingVM.ID);
             if (meeting != null)
             {
-                var attendees = _meetAttendeeRepo.GetAll(ma => ma.MeetingID == meeting.ID).ToList();
+                var attendees = _meetAttendeeRepo.GetAll().Where(ma => ma.MeetingID == meeting.ID).ToList();
                 if (attendees != null && attendees.Count > 0)
                 {
                     foreach (var attendee in attendees)
@@ -129,6 +129,14 @@ namespace MeetingManagement.Web.Controllers
         {
             _meetingRepo.Delete(deleteVM.ID);
             return true;
+        }
+
+        [Route("getattendeereport")]
+        public List<AttendeeCount> GetAttendeeReport()
+        {
+            var attendees = _attendeeRepo.GetAll().Select(a => new AttendeeCount 
+                {ID = a.ID, Name = a.Name, MeetingCount = a.Meetings.Count }).ToList();
+            return attendees;
         }
     }
 }

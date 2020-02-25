@@ -6,6 +6,9 @@ import { Meeting } from '../models/meeting';
   providedIn: 'root'
 })
 export class MeetingService {
+  getAttendeeReport() {
+    return this.apiService.get("meeting/getattendeereport", null)
+  }
   
   constructor(private apiService: ApiService) { }
 

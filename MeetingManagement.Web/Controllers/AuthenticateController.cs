@@ -44,7 +44,7 @@ namespace MeetingManagement.Web.Controllers
                 var token = new JwtSecurityToken(
                     issuer: _authOptions.Issuer,
                     audience: _authOptions.Audience,
-                    expires: DateTime.Now.AddHours(_authOptions.ExpiresInMinutes),
+                    expires: DateTime.Now.AddMinutes(_authOptions.ExpiresInMinutes),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.SecureKey)),
                         SecurityAlgorithms.HmacSha256Signature)

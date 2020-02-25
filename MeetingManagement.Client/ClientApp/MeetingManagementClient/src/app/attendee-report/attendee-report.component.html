@@ -1,0 +1,20 @@
+<h2>Attendee report</h2>
+
+<table *ngIf="attendeeReport != null && attendeeReport.length > 0">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Count
+        </td>
+    </tr>
+    <tr *ngFor="let attendee of attendeeReport">
+        <td>
+            {{ attendee.name }}
+        </td>
+        <td>
+            {{ attendee.meetingCount }}
+        </td>
+    </tr>
+</table>

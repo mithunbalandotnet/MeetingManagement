@@ -12,13 +12,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { AttendeeReportComponent } from '../attendee-report/attendee-report.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     MeetingListComponent,
     MeetingAddComponent,
-    MeetingEditComponent
+    MeetingEditComponent,
+    AttendeeReportComponent
   ],
   imports: [
     CommonModule,

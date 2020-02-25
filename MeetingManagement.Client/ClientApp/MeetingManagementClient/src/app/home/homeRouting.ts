@@ -4,6 +4,7 @@ import { AuthorizeService as Authorize} from '../services/authorize.service';
 import { MeetingListComponent } from '../components/meeting-list/meeting-list.component';
 import { MeetingAddComponent } from '../components/meeting-add/meeting-add.component';
 import { MeetingEditComponent } from '../components/meeting-edit/meeting-edit.component';
+import { AttendeeReportComponent } from '../attendee-report/attendee-report.component';
 
 const homeroutes: Routes = [
     {
@@ -29,6 +30,11 @@ const homeroutes: Routes = [
             {
                 path: "editmeeting/:id",
                 component: MeetingEditComponent,
+                canActivate: [Authorize]
+            },
+            {
+                path: "report",
+                component: AttendeeReportComponent,
                 canActivate: [Authorize]
             }
         ]

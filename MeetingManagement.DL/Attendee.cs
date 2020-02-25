@@ -8,5 +8,7 @@ namespace MeetingManagement.DL
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public virtual ICollection<MeetingAttendee> Meetings { get; set; }
     }
 }

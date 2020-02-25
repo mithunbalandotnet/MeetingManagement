@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './components/login/login.component';
+import { AttendeeReportComponent } from './attendee-report/attendee-report.component';
 
 @NgModule({
   declarations: [
