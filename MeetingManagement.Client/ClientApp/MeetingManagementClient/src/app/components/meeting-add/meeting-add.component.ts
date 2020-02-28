@@ -70,7 +70,7 @@ export class MeetingAddComponent implements OnInit, OnDestroy {
       this.toastr.error("Please select at least one attendee");
       return false;
     }
-    this.meeting.meetingDateTime = new Date(this.meetingDate.getFullYear(), this.meetingDate.getMonth(), this.meetingDate.getDate(), this.meetingDate.getHours(), this.meetingDate.getMinutes());
+    //this.meeting.meetingDateTime = new Date(this.meetingDate.getFullYear(), this.meetingDate.getMonth(), this.meetingDate.getDate(), this.meetingDate.getHours(), this.meetingDate.getMinutes());
     return true;
   }
   ngOnDestroy(): void {
